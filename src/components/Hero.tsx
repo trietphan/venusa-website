@@ -23,20 +23,20 @@ export default function Hero() {
     <section className="relative min-h-screen overflow-hidden bg-[#0A1628]">
       {/* ===== DESKTOP LAYOUT ===== */}
       <div className="hidden lg:flex items-center min-h-screen">
-        {/* Background carousel - right 55% */}
-        <div className="absolute inset-y-0 right-0 w-[55%]">
+        {/* Photo carousel - right side, fully visible */}
+        <div className="absolute inset-y-0 right-0 w-[55%] flex items-center justify-center bg-[#0A1628]">
           {slides.map((slide, i) => (
             <div
               key={slide.src}
-              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                i === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
+              className={`absolute inset-0 flex items-center justify-center p-8 transition-opacity duration-700 ease-in-out ${
+                i === current ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             >
-              <Image src={slide.src} alt={slide.alt} fill className="object-cover" sizes="55vw" priority={i === 0} />
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
+                <Image src={slide.src} alt={slide.alt} fill className="object-contain" sizes="55vw" priority={i === 0} style={{ backgroundColor: '#111827' }} />
+              </div>
             </div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/50 via-transparent to-[#0A1628]/20" />
         </div>
 
         {/* Content */}
