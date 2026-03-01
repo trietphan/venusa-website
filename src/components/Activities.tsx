@@ -21,7 +21,7 @@ const activities = [
 
 export default function Activities() {
   return (
-    <section id="activities" className="py-28 px-6 bg-slate-50/50">
+    <section id="activities" className="py-28 px-6 bg-blue-bg">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/70">Các Hoạt Động</span>

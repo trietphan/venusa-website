@@ -6,6 +6,8 @@
   --color-accent: #1DA1F2;
   --color-gold: #FFB300;
   --color-dark: #0A0F1C;
+  --color-blue-bg: #F0F5FF;
+  --color-blue-bg-alt: #E8F0FE;
 }
 
 html {
@@ -17,17 +19,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Elegant section transitions */
-section {
-  position: relative;
-}
-
-/* Smooth link underlines */
 a {
   transition: all 0.2s ease;
 }
 
-/* Modern scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }

@@ -20,7 +20,7 @@ export default function Partners() {
   const doubled = [...partners, ...partners];
 
   return (
-    <section className="py-24 px-6">
+    <section className="py-24 px-6 bg-blue-bg-alt">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs font-bold uppercase tracking-[0.15em] text-primary">Đối Tác</span>
@@ -32,8 +32,8 @@ export default function Partners() {
         {/* Scrolling carousel */}
         <div className="relative overflow-hidden">
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-blue-bg-alt to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-blue-bg-alt to-transparent z-10 pointer-events-none" />
 
           <div className="flex animate-scroll gap-12 items-center w-max">
             {doubled.map((p, i) => (

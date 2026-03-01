@@ -31,14 +31,21 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2.5 no-underline">
-          <Image
-            src="/images/logo.webp"
-            alt="VENUSA Logo"
-            width={140}
-            height={42}
-            className="h-10 w-auto"
-            priority
-          />
+          <div className="flex flex-col items-start">
+            <Image
+              src="/images/logo.webp"
+              alt="VENUSA Logo"
+              width={140}
+              height={42}
+              className="h-10 w-auto"
+              priority
+            />
+            <span className={`text-[0.6rem] tracking-[0.15em] uppercase font-medium mt-0.5 ml-0.5 transition-colors ${
+              scrolled ? "text-slate-400" : "text-white/50"
+            }`}>
+              Vươn Mình Bay Cao
+            </span>
+          </div>
         </Link>
 
         {/* Desktop links */}

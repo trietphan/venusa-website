@@ -20,101 +20,130 @@ export default function Hero() {
   }, [next]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
-      {/* Background carousel - covers full right half */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%]">
-        {slides.map((slide, i) => (
-          <div
-            key={slide.src}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              i === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
-            }`}
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              priority={i === 0}
-            />
+    <section className="relative min-h-screen overflow-hidden bg-[#0A1628]">
+      {/* ===== DESKTOP LAYOUT ===== */}
+      <div className="hidden lg:flex items-center min-h-screen">
+        {/* Background carousel - right 55% */}
+        <div className="absolute inset-y-0 right-0 w-[55%]">
+          {slides.map((slide, i) => (
+            <div
+              key={slide.src}
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                i === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
+              }`}
+            >
+              <Image src={slide.src} alt={slide.alt} fill className="object-cover" sizes="55vw" priority={i === 0} />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/50 via-transparent to-[#0A1628]/20" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] backdrop-blur-md px-4 py-2 rounded-full text-sm text-white/80 mb-8">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              Nonprofit 501(c)(3) Organization
+            </div>
+
+            <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6 tracking-tight">
+              Hội Doanh Nhân{" "}
+              <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">Người Việt</span>{" "}
+              <span className="block">tại Mỹ</span>
+            </h1>
+
+            <p className="text-lg text-white/60 leading-relaxed mb-10 max-w-md">
+              Kết nối nguồn lực từ các doanh nhân, doanh nghiệp người Việt tại Mỹ nhằm tăng cường hợp tác và cơ hội kinh doanh.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mb-16">
+              <a href="#membership" className="group inline-flex items-center gap-2 bg-white text-dark font-semibold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-white/10 transition-all no-underline text-[0.95rem]">
+                Trở Thành Hội Viên
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+              <a href="#about" className="inline-flex items-center gap-2 border border-white/20 text-white/80 font-medium px-8 py-4 rounded-full hover:bg-white/[0.06] hover:border-white/30 transition-all no-underline text-[0.95rem]">
+                Tìm Hiểu Thêm
+              </a>
+            </div>
+
+            {/* Slide indicators */}
+            <div className="flex items-center gap-6">
+              <div className="flex gap-2">
+                {slides.map((_, i) => (
+                  <button key={i} onClick={() => setCurrent(i)} className={`h-1 rounded-full transition-all duration-500 ${i === current ? "w-10 bg-white" : "w-3 bg-white/20 hover:bg-white/40"}`} aria-label={`Slide ${i + 1}`} />
+                ))}
+              </div>
+              <span className="text-white/30 text-sm">{slides[current].alt}</span>
+            </div>
           </div>
-        ))}
-        {/* Gradient overlays for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-dark/30" />
-        <div className="absolute inset-0 lg:hidden bg-dark/50" />
+        </div>
+
+        {/* Nav arrows */}
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+          <button onClick={prev} className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md text-white flex items-center justify-center hover:bg-white/15 transition-colors border border-white/10" aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 15l-6-6-6 6"/></svg>
+          </button>
+          <button onClick={next} className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md text-white flex items-center justify-center hover:bg-white/15 transition-colors border border-white/10" aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
-        <div className="max-w-xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] backdrop-blur-md px-4 py-2 rounded-full text-sm text-white/80 mb-8">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            Nonprofit 501(c)(3) Organization
+      {/* ===== MOBILE LAYOUT ===== */}
+      <div className="lg:hidden flex flex-col min-h-screen">
+        {/* Photo carousel - full width, visible */}
+        <div className="relative w-full aspect-[4/3] mt-16">
+          {slides.map((slide, i) => (
+            <div
+              key={slide.src}
+              className={`absolute inset-0 transition-all duration-1000 ${
+                i === current ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image src={slide.src} alt={slide.alt} fill className="object-cover" sizes="100vw" priority={i === 0} />
+            </div>
+          ))}
+          {/* Subtle bottom gradient to blend into content */}
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0A1628] to-transparent" />
+
+          {/* Mobile arrows */}
+          <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center" aria-label="Previous">‹</button>
+          <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center" aria-label="Next">›</button>
+        </div>
+
+        {/* Content below image */}
+        <div className="px-6 pt-6 pb-12 flex-1 flex flex-col justify-center">
+          <div className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] px-3 py-1.5 rounded-full text-xs text-white/70 mb-5 w-fit">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            501(c)(3) Nonprofit
           </div>
 
-          <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6 tracking-tight">
+          <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white leading-[1.1] mb-4 tracking-tight">
             Hội Doanh Nhân{" "}
             <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">Người Việt</span>{" "}
-            <span className="block">tại Mỹ</span>
+            tại Mỹ
           </h1>
 
-          <p className="text-lg text-white/60 leading-relaxed mb-10 max-w-md">
+          <p className="text-sm text-white/50 leading-relaxed mb-6">
             Kết nối nguồn lực từ các doanh nhân, doanh nghiệp người Việt tại Mỹ nhằm tăng cường hợp tác và cơ hội kinh doanh.
           </p>
 
-          <div className="flex flex-wrap gap-4 mb-16">
-            <a
-              href="#membership"
-              className="group inline-flex items-center gap-2 bg-white text-dark font-semibold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-white/10 transition-all no-underline text-[0.95rem]"
-            >
-              Trở Thành Hội Viên
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+          <div className="flex flex-wrap gap-3 mb-6">
+            <a href="#membership" className="inline-flex items-center gap-1.5 bg-white text-dark font-semibold px-6 py-3 rounded-full text-sm no-underline">
+              Trở Thành Hội Viên →
             </a>
-            <a
-              href="#about"
-              className="inline-flex items-center gap-2 border border-white/20 text-white/80 font-medium px-8 py-4 rounded-full hover:bg-white/[0.06] hover:border-white/30 transition-all no-underline text-[0.95rem]"
-            >
+            <a href="#about" className="inline-flex items-center border border-white/20 text-white/70 font-medium px-6 py-3 rounded-full text-sm no-underline">
               Tìm Hiểu Thêm
             </a>
           </div>
 
-          {/* Slide indicators + caption */}
-          <div className="flex items-center gap-6">
-            <div className="flex gap-2">
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`h-1 rounded-full transition-all duration-500 ${
-                    i === current ? "w-10 bg-white" : "w-3 bg-white/20 hover:bg-white/40"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-            <span className="text-white/30 text-sm">{slides[current].alt}</span>
+          {/* Dots */}
+          <div className="flex gap-2">
+            {slides.map((_, i) => (
+              <button key={i} onClick={() => setCurrent(i)} className={`h-1 rounded-full transition-all duration-500 ${i === current ? "w-8 bg-white" : "w-2 bg-white/20"}`} aria-label={`Slide ${i + 1}`} />
+            ))}
           </div>
-        </div>
-
-        {/* Nav arrows on right side */}
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3">
-          <button
-            onClick={prev}
-            className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md text-white flex items-center justify-center hover:bg-white/15 transition-colors border border-white/10"
-            aria-label="Previous"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 15l-6-6-6 6"/></svg>
-          </button>
-          <button
-            onClick={next}
-            className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md text-white flex items-center justify-center hover:bg-white/15 transition-colors border border-white/10"
-            aria-label="Next"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
         </div>
       </div>
     </section>
