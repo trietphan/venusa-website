@@ -25,11 +25,11 @@ export default function Hero() {
       <div className="hidden lg:flex items-center min-h-screen">
         {/* Photo carousel - right side, fully visible */}
         <div className="absolute inset-y-0 right-0 w-[55%] flex flex-col items-center justify-center bg-[#0A1628]">
-          <div className="relative w-full flex-1 mx-8 mt-8 mb-2">
+          <div className="relative w-full flex-1 mx-4 mt-4 mb-1">
             {slides.map((slide, i) => (
               <div
                 key={slide.src}
-                className={`absolute inset-8 flex items-center justify-center transition-opacity duration-700 ease-in-out ${
+                className={`absolute inset-4 flex items-center justify-center transition-opacity duration-700 ease-in-out ${
                   i === current ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
               >
@@ -39,7 +39,15 @@ export default function Hero() {
               </div>
             ))}
           </div>
-          <p className="text-white/40 text-sm pb-8">{slides[current].alt}</p>
+          {/* Dots + caption under photo */}
+          <div className="flex items-center gap-4 pb-6">
+            <div className="flex gap-2">
+              {slides.map((_, i) => (
+                <button key={i} onClick={() => setCurrent(i)} className={`h-1 rounded-full transition-all duration-500 ${i === current ? "w-8 bg-white" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Slide ${i + 1}`} />
+              ))}
+            </div>
+            <span className="text-white/30 text-sm">{slides[current].alt}</span>
+          </div>
         </div>
 
         {/* Content */}
@@ -71,11 +79,7 @@ export default function Hero() {
             </div>
 
             {/* Slide indicators */}
-            <div className="flex gap-2">
-              {slides.map((_, i) => (
-                <button key={i} onClick={() => setCurrent(i)} className={`h-1 rounded-full transition-all duration-500 ${i === current ? "w-10 bg-white" : "w-3 bg-white/20 hover:bg-white/40"}`} aria-label={`Slide ${i + 1}`} />
-              ))}
-            </div>
+
           </div>
         </div>
 
