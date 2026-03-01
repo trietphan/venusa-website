@@ -25,17 +25,15 @@ export default function Hero() {
       <div className="hidden lg:flex items-center min-h-screen">
         {/* Photo carousel - right side, fully visible */}
         <div className="absolute inset-y-0 right-0 w-[55%] flex flex-col items-center justify-center bg-[#0A1628]">
-          <div className="relative w-full flex-1 mx-4 mt-4 mb-1">
+          <div className="relative w-full flex-1 m-4 mb-2 rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
             {slides.map((slide, i) => (
               <div
                 key={slide.src}
-                className={`absolute inset-4 flex items-center justify-center transition-opacity duration-700 ease-in-out ${
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                   i === current ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
               >
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-                  <Image src={slide.src} alt={slide.alt} fill className="object-contain" sizes="55vw" priority={i === 0} style={{ backgroundColor: '#111827' }} />
-                </div>
+                <Image src={slide.src} alt={slide.alt} fill className="object-cover" sizes="55vw" priority={i === 0} />
               </div>
             ))}
           </div>
