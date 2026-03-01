@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0B3D91;
+  --color-primary-light: #1565C0;
+  --color-accent: #E53935;
+  --color-gold: #FFB300;
+  --color-dark: #0F172A;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}

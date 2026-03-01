@@ -1,0 +1,95 @@
+const pages = [
+  { href: "#about", label: "Về Chúng Tôi" },
+  { href: "#activities", label: "Hoạt Động" },
+  { href: "#news", label: "Tin Tức" },
+  { href: "#membership", label: "Hội Viên" },
+];
+
+const programs = [
+  { href: "#", label: "Diễn Đàn" },
+  { href: "#", label: "Dịch Vụ Uy Tín" },
+  { href: "#", label: "Thiện Nguyện" },
+  { href: "#", label: "Truyền Thông" },
+];
+
+export default function Footer() {
+  return (
+    <footer id="contact" className="bg-dark text-slate-400 pt-16 pb-8 px-6">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+        {/* Brand */}
+        <div className="md:col-span-1">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+              <svg viewBox="0 0 44 44" className="w-6 h-6" fill="none">
+                <path d="M22 4L8 36h8l6-16 6 16h8L22 4z" fill="#FFB300" />
+              </svg>
+            </div>
+            <span className="font-extrabold text-white text-xl">VENUSA</span>
+          </div>
+          <p className="text-sm leading-relaxed">
+            The Vietnamese Entrepreneurs Network in the United States of America. Kết nối doanh nhân Việt, vươn tầm thế giới.
+          </p>
+          <div className="flex gap-3 mt-4">
+            <a
+              href="https://www.facebook.com/venusafanpage/"
+              target="_blank"
+              rel="noreferrer"
+              className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-colors"
+              aria-label="Facebook"
+            >
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/venusa/"
+              target="_blank"
+              rel="noreferrer"
+              className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-colors"
+              aria-label="LinkedIn"
+            >
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Pages */}
+        <div>
+          <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Trang</h4>
+          {pages.map((p) => (
+            <a key={p.label} href={p.href} className="block text-sm text-slate-400 hover:text-white mb-2 no-underline transition-colors">
+              {p.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Programs */}
+        <div>
+          <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Hoạt Động</h4>
+          {programs.map((p) => (
+            <a key={p.label} href={p.href} className="block text-sm text-slate-400 hover:text-white mb-2 no-underline transition-colors">
+              {p.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Liên Hệ</h4>
+          <a href="mailto:info@venusa.us" className="block text-sm text-slate-400 hover:text-white mb-2 no-underline transition-colors">
+            info@venusa.us
+          </a>
+          <a href="https://venusa.us" className="block text-sm text-slate-400 hover:text-white mb-2 no-underline transition-colors">
+            venusa.us
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs">
+        Copyright © 2026 — VENUSA. All rights reserved.
+      </div>
+    </footer>
+  );
+}
