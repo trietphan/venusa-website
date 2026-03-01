@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
   { href: "#about", label: "Về Chúng Tôi" },
@@ -21,42 +22,45 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 inset-x-0 z-50 transition-all border-b backdrop-blur-xl ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 border-slate-200 shadow-lg shadow-black/[0.04]"
-          : "bg-white/90 border-slate-200/60"
+          ? "bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 text-primary no-underline">
-          <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center">
-            <svg viewBox="0 0 44 44" className="w-7 h-7" fill="none">
-              <path d="M22 4L8 36h8l6-16 6 16h8L22 4z" fill="#FFB300" />
-            </svg>
-          </div>
-          <div>
-            <span className="font-extrabold text-xl tracking-tight block leading-tight">VENUSA</span>
-            <span className="text-[0.65rem] text-slate-500 tracking-widest uppercase">Vươn Mình Bay Cao</span>
-          </div>
+        <Link href="/" className="flex items-center gap-2.5 no-underline">
+          <Image
+            src="/images/logo.webp"
+            alt="VENUSA Logo"
+            width={140}
+            height={42}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden md:flex items-center gap-0.5">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-100 px-3.5 py-2 rounded-lg transition-colors no-underline"
+                className={`text-[0.85rem] font-medium px-4 py-2 rounded-lg transition-all no-underline ${
+                  scrolled
+                    ? "text-slate-600 hover:text-primary hover:bg-slate-50"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
+                }`}
               >
                 {l.label}
               </a>
             </li>
           ))}
-          <li>
+          <li className="ml-2">
             <a
               href="#membership"
-              className="text-sm font-semibold text-white bg-primary hover:bg-primary-light px-4 py-2 rounded-lg transition-colors no-underline ml-1"
+              className="text-[0.85rem] font-semibold text-white bg-primary hover:bg-primary-light px-5 py-2.5 rounded-full transition-all no-underline shadow-lg shadow-primary/20 hover:shadow-primary/30"
             >
               Trở Thành Hội Viên
             </a>
@@ -69,20 +73,20 @@ export default function Navbar() {
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
-          <span className="w-6 h-0.5 bg-slate-800 rounded" />
-          <span className="w-6 h-0.5 bg-slate-800 rounded" />
-          <span className="w-6 h-0.5 bg-slate-800 rounded" />
+          <span className={`w-6 h-0.5 rounded transition-colors ${scrolled ? "bg-slate-800" : "bg-white"}`} />
+          <span className={`w-6 h-0.5 rounded transition-colors ${scrolled ? "bg-slate-800" : "bg-white"}`} />
+          <span className={`w-6 h-0.5 rounded transition-colors ${scrolled ? "bg-slate-800" : "bg-white"}`} />
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white border-t border-slate-200 px-6 py-4 shadow-xl">
+        <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200 px-6 py-4 shadow-xl">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="block py-2 text-sm font-medium text-slate-700 no-underline"
+              className="block py-2.5 text-sm font-medium text-slate-700 no-underline"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -90,7 +94,7 @@ export default function Navbar() {
           ))}
           <a
             href="#membership"
-            className="block mt-2 text-center text-sm font-semibold text-white bg-primary rounded-lg py-2.5 no-underline"
+            className="block mt-3 text-center text-sm font-semibold text-white bg-primary rounded-full py-2.5 no-underline"
             onClick={() => setOpen(false)}
           >
             Trở Thành Hội Viên

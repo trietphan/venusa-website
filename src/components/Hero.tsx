@@ -15,111 +15,106 @@ export default function Hero() {
   const prev = useCallback(() => setCurrent((c) => (c - 1 + slides.length) % slides.length), []);
 
   useEffect(() => {
-    const timer = setInterval(next, 4000);
+    const timer = setInterval(next, 4500);
     return () => clearInterval(timer);
   }, [next]);
 
   return (
-    <section className="min-h-screen flex items-center bg-gradient-to-br from-primary via-[#1A237E] to-[#0D47A1] pt-20 relative overflow-hidden">
-      {/* Subtle pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`
-      }} />
-
-      <div className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Left content */}
-        <div className="text-white">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">
-            🇻🇳 🇺🇸 Nonprofit 501(c)(3)
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
+      {/* Background carousel - covers full right half */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%]">
+        {slides.map((slide, i) => (
+          <div
+            key={slide.src}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              i === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
+            }`}
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              priority={i === 0}
+            />
           </div>
-          <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-[3.5rem] font-bold leading-[1.1] mb-6">
+        ))}
+        {/* Gradient overlays for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-dark/30" />
+        <div className="absolute inset-0 lg:hidden bg-dark/50" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
+        <div className="max-w-xl">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] backdrop-blur-md px-4 py-2 rounded-full text-sm text-white/80 mb-8">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            Nonprofit 501(c)(3) Organization
+          </div>
+
+          <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6 tracking-tight">
             Hội Doanh Nhân{" "}
-            <span className="text-gold">Người Việt</span>{" "}
-            tại Mỹ
+            <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">Người Việt</span>{" "}
+            <span className="block">tại Mỹ</span>
           </h1>
-          <p className="text-lg text-white/90 leading-relaxed mb-8 max-w-lg">
-            Kết nối nguồn lực từ các doanh nhân, doanh nghiệp người Việt tại Mỹ nhằm tăng cường hợp tác, trao đổi thông tin và cơ hội kinh doanh, đầu tư.
+
+          <p className="text-lg text-white/60 leading-relaxed mb-10 max-w-md">
+            Kết nối nguồn lực từ các doanh nhân, doanh nghiệp người Việt tại Mỹ nhằm tăng cường hợp tác và cơ hội kinh doanh.
           </p>
-          <div className="flex flex-wrap gap-4">
+
+          <div className="flex flex-wrap gap-4 mb-16">
             <a
               href="#membership"
-              className="inline-flex items-center gap-2 bg-gold text-slate-900 font-semibold px-8 py-3.5 rounded-xl hover:bg-amber-400 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30 transition-all no-underline"
+              className="group inline-flex items-center gap-2 bg-white text-dark font-semibold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-white/10 transition-all no-underline text-[0.95rem]"
             >
-              Trở Thành Hội Viên →
+              Trở Thành Hội Viên
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
             <a
               href="#about"
-              className="inline-flex items-center gap-2 border-2 border-white/30 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 hover:border-white/50 transition-all no-underline"
+              className="inline-flex items-center gap-2 border border-white/20 text-white/80 font-medium px-8 py-4 rounded-full hover:bg-white/[0.06] hover:border-white/30 transition-all no-underline text-[0.95rem]"
             >
               Tìm Hiểu Thêm
             </a>
           </div>
-        </div>
 
-        {/* Right carousel */}
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-lg">
-            {/* Image container */}
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10">
-              {slides.map((slide, i) => (
-                <div
-                  key={slide.src}
-                  className={`absolute inset-0 transition-opacity duration-700 ${
-                    i === current ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  <Image
-                    src={slide.src}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 512px"
-                    priority={i === 0}
-                  />
-                </div>
-              ))}
-
-              {/* Gradient overlay at bottom */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
-
-              {/* Prev / Next buttons */}
-              <button
-                onClick={prev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white flex items-center justify-center hover:bg-black/60 transition-colors border border-white/10"
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-              <button
-                onClick={next}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white flex items-center justify-center hover:bg-black/60 transition-colors border border-white/10"
-                aria-label="Next"
-              >
-                ›
-              </button>
-            </div>
-
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-4">
+          {/* Slide indicators + caption */}
+          <div className="flex items-center gap-6">
+            <div className="flex gap-2">
               {slides.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current
-                      ? "w-8 bg-gold"
-                      : "w-2 bg-white/30 hover:bg-white/50"
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    i === current ? "w-10 bg-white" : "w-3 bg-white/20 hover:bg-white/40"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
-
-            {/* Caption */}
-            <p className="text-center text-white/50 text-sm mt-3">
-              {slides[current].alt}
-            </p>
+            <span className="text-white/30 text-sm">{slides[current].alt}</span>
           </div>
+        </div>
+
+        {/* Nav arrows on right side */}
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3">
+          <button
+            onClick={prev}
+            className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md text-white flex items-center justify-center hover:bg-white/15 transition-colors border border-white/10"
+            aria-label="Previous"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 15l-6-6-6 6"/></svg>
+          </button>
+          <button
+            onClick={next}
+            className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md text-white flex items-center justify-center hover:bg-white/15 transition-colors border border-white/10"
+            aria-label="Next"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
         </div>
       </div>
     </section>

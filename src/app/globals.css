@@ -3,9 +3,9 @@
 @theme {
   --color-primary: #0B3D91;
   --color-primary-light: #1565C0;
-  --color-accent: #E53935;
+  --color-accent: #1DA1F2;
   --color-gold: #FFB300;
-  --color-dark: #0F172A;
+  --color-dark: #0A0F1C;
 }
 
 html {
@@ -14,4 +14,27 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Elegant section transitions */
+section {
+  position: relative;
+}
+
+/* Smooth link underlines */
+a {
+  transition: all 0.2s ease;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+  border-radius: 3px;
 }

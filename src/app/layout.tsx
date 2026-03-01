@@ -8,6 +8,9 @@ const playfair = Playfair_Display({ subsets: ["latin", "vietnamese"], variable: 
 export const metadata: Metadata = {
   title: "VENUSA - Hội Doanh Nhân Người Việt tại Mỹ",
   description: "The Vietnamese Entrepreneurs Network in the United States of America - Kết nối doanh nhân Việt Nam tại Hoa Kỳ",
+  icons: {
+    icon: "/images/logo.webp",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
