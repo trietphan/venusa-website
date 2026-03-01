@@ -12,6 +12,7 @@ const partners = [
   { src: "/images/partner-8.webp", alt: "Vietnamese Youth & Student Association California" },
   { src: "/images/partner-9.webp", alt: "TNSV Việt Nam tại Hoa Kỳ" },
   { src: "/images/partner-10.webp", alt: "Greenfield & Associates LLP" },
+  { src: "/images/partner-11.webp", alt: "Hương Trang Books" },
 ];
 
 export default function Partners() {
@@ -38,7 +39,7 @@ export default function Partners() {
             {doubled.map((p, i) => (
               <div
                 key={`${p.alt}-${i}`}
-                className="flex-shrink-0 w-[140px] h-[100px] relative grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+                className="flex-shrink-0 w-[140px] h-[100px] relative transition-all duration-300 hover:scale-110"
               >
                 <Image
                   src={p.src}
