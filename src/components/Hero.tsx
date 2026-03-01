@@ -93,7 +93,7 @@ export default function Hero() {
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="lg:hidden flex flex-col min-h-screen">
         {/* Photo carousel - full width, visible */}
-        <div className="relative w-full aspect-[4/3] mt-16">
+        <div className="relative w-full aspect-[4/3] mt-24">
           {slides.map((slide, i) => (
             <div
               key={slide.src}
